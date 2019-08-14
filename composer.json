@@ -1,0 +1,16 @@
+{
+  "name": "plesk/composer-command-info",
+  "type": "composer-plugin",
+  "version": "1.0.0",
+  "require": {
+    "composer-plugin-api": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Plesk\\ComposerCommandInfo\\": "src/"
+    }
+  },
+  "extra": {
+    "class": "Plesk\\ComposerCommandInfo\\Plugin"
+  }
+}
