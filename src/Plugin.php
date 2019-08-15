@@ -42,6 +42,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     public function activate(Composer $composer, IOInterface $io)
     {
         $this->commandInfoFactory = new CommandInfoFactory($composer);
+        $this->commandInfo = $this->commandInfoFactory->getNullCommandInfo();
     }
 
     /**
