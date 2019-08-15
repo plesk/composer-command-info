@@ -11,7 +11,10 @@ use Composer\Plugin\CommandEvent;
  */
 class CommandInfoFactory
 {
-    const SUPPORTED_COMMANDS = [
+    /**
+     * @var array
+     */
+    private $supportedCommands = [
         CommandInfoInterface::INSTALL_COMMAND,
         CommandInfoInterface::UPDATE_COMMAND,
     ];
@@ -39,8 +42,8 @@ class CommandInfoFactory
     {
         $operation = $event->getCommandName();
 
-        if (!in_array($operation, self::SUPPORTED_COMMANDS)) {
-            return new NullCommandInfo();
+        if (!in_array($operation, $this->supportedCommands)) {
+            return $this->getNullCommandInfo();
         }
 
         $input = $event->getInput();
@@ -48,5 +51,13 @@ class CommandInfoFactory
         $commandInfo->setDevMode(!$input->getOption('no-dev'));
 
         return $commandInfo;
+    }
+
+    /**
+     * @return NullCommandInfo
+     */
+    public function getNullCommandInfo()
+    {
+        return new NullCommandInfo();
     }
 }
