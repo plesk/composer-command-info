@@ -1,9 +1,11 @@
 {
   "name": "plesk/composer-command-info",
   "type": "composer-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
-    "composer-plugin-api": "^1.1"
+    "composer-plugin-api": "^1.1",
+    "php": ">=5.4",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
