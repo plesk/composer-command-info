@@ -369,6 +369,7 @@ class CommandInfo implements CommandInfoInterface
      */
     private function isUpdateCommand()
     {
-        return $this->command === self::UPDATE_COMMAND;
+        return ($this->command === self::UPDATE_COMMAND)
+            || (!$this->composer->getLocker()->isLocked() && $this->command === self::INSTALL_COMMAND);
     }
 }
