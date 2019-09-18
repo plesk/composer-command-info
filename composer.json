@@ -1,7 +1,7 @@
 {
   "name": "plesk/composer-command-info",
   "type": "composer-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "require": {
     "composer-plugin-api": "^1.1",
     "php": ">=5.4",
