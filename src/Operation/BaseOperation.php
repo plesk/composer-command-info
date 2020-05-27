@@ -48,7 +48,7 @@ class BaseOperation implements OperationInterface
      */
     public function getJobType()
     {
-        return $this->operation->getJobType();
+        return $this->operation->getOperationType();
     }
 
     /**

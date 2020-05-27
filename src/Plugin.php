@@ -45,6 +45,14 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $this->commandInfo = $this->commandInfoFactory->getNullCommandInfo();
     }
 
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+    }
+
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -54,10 +62,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
             PluginEvents::COMMAND => [
                 ['onCommand']
             ],
-            InstallerEvents::PRE_DEPENDENCIES_SOLVING => [
-                ['onPreDependenciesSolving'],
-            ],
-            InstallerEvents::POST_DEPENDENCIES_SOLVING => [
+            InstallerEvents::PRE_OPERATIONS_EXEC => [
                 ['onPostDependenciesSolving'],
             ],
             'pre-package-install' => [
@@ -87,12 +92,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     public function onCommand(CommandEvent $event)
     {
         $this->commandInfo = $this->commandInfoFactory->getCommandInfo($event);
+        $this->initDependencySolvingTask();
     }
 
-    /**
-     * @param InstallerEvent $event
-     */
-    public function onPreDependenciesSolving(InstallerEvent $event)
+    private function initDependencySolvingTask()
     {
         $operation = new DependenciesSolvingOperation();
         $this->commandInfo
@@ -109,7 +112,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         /**
          * @var OperationInterface[] $operations
          */
-        $operations = $event->getOperations();
+        $operations = $event->getTransaction()->getOperations();
         $operations = array_filter($operations, function ($operation) {
             return $operation instanceof InstallOperation
                 || $operation instanceof UpdateOperation

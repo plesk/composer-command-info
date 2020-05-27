@@ -1,14 +1,14 @@
 {
   "name": "plesk/composer-command-info",
   "type": "composer-plugin",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "require": {
-    "composer-plugin-api": "^1.1",
+    "composer-plugin-api": "^2.0",
     "php": ">=5.4",
     "ext-json": "*"
   },
   "require-dev": {
-    "composer/composer": "^1.8",
+    "composer/composer": "^2.0",
     "codeception/codeception": "^3.1"
   },
   "autoload": {
